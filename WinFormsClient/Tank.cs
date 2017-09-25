@@ -19,7 +19,6 @@ namespace WinFormsClient {
         }
         public Orientation Orient { get; set; }
 
-        
 
         //поражение танка противника в области видимости
         public static void Attack(List<Tank> tanks1, List<Tank> tanks2) {
@@ -56,7 +55,7 @@ namespace WinFormsClient {
         public static void MoveRotateTank(List<Tank> tank) {
             Random rand = new Random(DateTime.Now.Millisecond);
             for (int i = 0; i < tank.Count; i++) {
-                int move = rand.Next(-1, 1);
+                int move =  rand.Next(-1, 1);
                 int rotate = rand.Next(-5, 5);
                 switch (rotate) {
                     //поворот налево
@@ -121,6 +120,35 @@ namespace WinFormsClient {
             }
         }
 
+        //инициализация танков
+        public static void InitTanks(ref List<Tank> tanks, int tanksCount, bool blue) {
+            Random rand = new Random(DateTime.Now.Millisecond);
+            tanks = new List<Tank>();
+
+            for (int i = 0; i < tanksCount; i++) {
+                int x, y;
+                bool flag = false;
+
+                do {
+                    //позиция на поле
+                    if (blue)
+                        x = rand.Next(15, 30);
+                    else {
+                        x = rand.Next(0, 15);
+                    }
+                    y = rand.Next(0, 30);
+                    foreach (var tank in tanks) {
+                        if (tank.X == x && tank.Y == y)
+                            flag = true;
+                    }
+                } while (flag);
+
+                //ориентация
+                int rotate = rand.Next(0, 3);
+                Tank t = new Tank() { Flag = true, X = x, Y = y, Orient = (Tank.Orientation)rotate };
+                tanks.Add(t);
+            }
+        }
 
     }
 }

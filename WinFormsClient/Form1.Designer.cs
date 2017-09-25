@@ -217,8 +217,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbPlayer1Name;
         private System.Windows.Forms.Button btnStartGame;
-        public System.Windows.Forms.DataGridView dgvGameField;
         private System.Windows.Forms.Button button1;
+        public System.Windows.Forms.DataGridView dgvGameField;
     }
 }
 
