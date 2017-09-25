@@ -26,7 +26,13 @@ namespace WinFormsClient {
         //инициализация танков
 
         private void InitTanks(ref List<Tank> tanks, bool blue) {
-            Random rand = new Random(DateTime.Now.Millisecond);
+            Random rand; 
+            if (blue)
+                 rand = new Random(DateTime.Now.Second);
+            else {
+                 rand = new Random(DateTime.Now.Millisecond);
+            }
+            
             tanks = new List<Tank>();
             Tank.CountCell = countCell;
             Tank.TankVisible = tankVisible;
