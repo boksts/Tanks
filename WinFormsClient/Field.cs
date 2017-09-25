@@ -82,24 +82,24 @@ namespace WinFormsClient {
             //ориентации синих танков
             tnBlue = new PictureBox[4];
             for (int i = 0; i < 4; i++) {
-                tnBlue[0] = new PictureBox() { Image = Image.FromFile("tn_blue.jpg") };
-                tnBlue[1] = new PictureBox() { Image = Image.FromFile("tn_blue.jpg") };
+                tnBlue[0] = new PictureBox() { Image = Image.FromFile(@"Pictures\tn_blue.jpg") };
+                tnBlue[1] = new PictureBox() { Image = Image.FromFile(@"Pictures\tn_blue.jpg") };
                 tnBlue[1].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                tnBlue[2] = new PictureBox() { Image = Image.FromFile("tn_blue.jpg") };
+                tnBlue[2] = new PictureBox() { Image = Image.FromFile(@"Pictures\tn_blue.jpg") };
                 tnBlue[2].Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
-                tnBlue[3] = new PictureBox() { Image = Image.FromFile("tn_blue.jpg") };
+                tnBlue[3] = new PictureBox() { Image = Image.FromFile(@"Pictures\tn_blue.jpg") };
                 tnBlue[3].Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
             }
 
             //ориентации красных танков
             tnRed = new PictureBox[4];
             for (int i = 0; i < 4; i++) {
-                tnRed[0] = new PictureBox() { Image = Image.FromFile("tn_red.jpg") };
-                tnRed[1] = new PictureBox() { Image = Image.FromFile("tn_red.jpg") };
+                tnRed[0] = new PictureBox() { Image = Image.FromFile(@"Pictures\tn_red.jpg") };
+                tnRed[1] = new PictureBox() { Image = Image.FromFile(@"Pictures\tn_red.jpg") };
                 tnRed[1].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                tnRed[2] = new PictureBox() { Image = Image.FromFile("tn_red.jpg") };
+                tnRed[2] = new PictureBox() { Image = Image.FromFile(@"Pictures\tn_red.jpg") };
                 tnRed[2].Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
-                tnRed[3] = new PictureBox() { Image = Image.FromFile("tn_red.jpg") };
+                tnRed[3] = new PictureBox() { Image = Image.FromFile(@"Pictures\tn_red.jpg") };
                 tnRed[3].Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
             }
 
@@ -110,7 +110,7 @@ namespace WinFormsClient {
             //заполенение поля танками
             for (int i = 0; i < dgvGameField.ColumnCount; i++)
                 for (int j = 0; j < dgvGameField.RowCount; j++)
-                    dgvGameField.Rows[i].Cells[j].Value = Image.FromFile("white.jpg");
+                    dgvGameField.Rows[i].Cells[j].Value = Image.FromFile(@"Pictures\white.jpg");
 
             foreach (var tank in tanks1) {
                 dgvGameField.Rows[tank.X].Cells[tank.Y].Value = tnRed[(int)tank.Orient].Image;
