@@ -55,7 +55,7 @@ namespace WinFormsClient {
         public static void MoveRotateTank(List<Tank> tank) {
             Random rand = new Random(DateTime.Now.Millisecond);
             for (int i = 0; i < tank.Count; i++) {
-                int move =  rand.Next(-1, 1);
+                int move = rand.Next(-1, 1);
                 int rotate = rand.Next(-5, 5);
                 switch (rotate) {
                     //поворот налево
@@ -121,7 +121,7 @@ namespace WinFormsClient {
         }
 
         //инициализация танков
-        public static void InitTanks(ref List<Tank> tanks, int tanksCount, bool blue) {
+        public static void InitTanks(List<Tank> tanks, int tanksCount, bool blue) {
             Random rand = new Random(DateTime.Now.Millisecond);
             tanks = new List<Tank>();
 
