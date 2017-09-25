@@ -17,8 +17,8 @@ namespace WinFormsClient {
             InitializeComponent();
             this.Width = countCell * (sizeCell + 1) + 250;
             this.Height = countCell * (sizeCell + 1) + 50;
-            InitTanks(ref tanks1, blue: true);
-            InitTanks(ref tanks2, blue: false);
+            InitTanks(ref tanks1, color:Color.Blue);
+            InitTanks(ref tanks2, color:Color.Red);
             InitField();
             UpdateField();
         }
@@ -26,14 +26,17 @@ namespace WinFormsClient {
         
 
         private void btnStartGame_Click(object sender, EventArgs e) {
-            Tank.Attack(tanks1, tanks2);
+            //Tank.Attack(tanks1, tanks2);
+            Deffense(tanks1, tanks2);
+            UpdateField();
+            Deffense(tanks2, tanks1);
             UpdateField();
 
         }
 
         private void button1_Click(object sender, EventArgs e) {
-            Tank.MoveRotateTank(tanks1);
-            Tank.MoveRotateTank(tanks2);
+           // Tank.MoveRotateTank(tanks1);
+           // Tank.MoveRotateTank(tanks2);
             UpdateField();
         }
 

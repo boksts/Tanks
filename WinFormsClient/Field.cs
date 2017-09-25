@@ -15,7 +15,7 @@ namespace WinFormsClient {
         //число танков кажждой команды
         private readonly int tanksCount = 5;
         //видимость танка
-        private readonly int tankVisible = 5;
+        private readonly int tankVisible = 10;
 
         private PictureBox[] tnBlue;
         private PictureBox[] tnRed;
@@ -23,11 +23,13 @@ namespace WinFormsClient {
         private List<Tank> tanks1;
         private List<Tank> tanks2;
 
+        private Color[,] field;
+
         //инициализация танков
 
-        private void InitTanks(ref List<Tank> tanks, bool blue) {
-            Random rand; 
-            if (blue)
+        private void InitTanks(ref List<Tank> tanks, Color color) {
+            Random rand;
+            if (color == Color.Blue)
                  rand = new Random(DateTime.Now.Second);
             else {
                  rand = new Random(DateTime.Now.Millisecond);
@@ -43,7 +45,7 @@ namespace WinFormsClient {
 
                 do {
                     //позиция на поле
-                    if (blue)
+                    if (color == Color.Blue)
                         x = rand.Next(15, 30);
                     else {
                         x = rand.Next(0, 15);
@@ -57,13 +59,16 @@ namespace WinFormsClient {
 
                 //ориентация
                 int rotate = rand.Next(0, 3);
-                Tank t = new Tank() { Flag = true, X = x, Y = y, Orient = (Tank.Orientation)rotate };
+                Tank t = new Tank() { X = x, Y = y, Orient = (Tank.Orientation)rotate, Color = color};
                 tanks.Add(t);
             }
         }
 
         //инициализация поля
         public void InitField() {
+
+            field = new Color[countCell, countCell];
+            
             //размеры поля (грида)
             dgvGameField.Width = dgvGameField.Height = countCell * sizeCell + 3;
 
@@ -114,10 +119,38 @@ namespace WinFormsClient {
 
             foreach (var tank in tanks1) {
                 dgvGameField.Rows[tank.X].Cells[tank.Y].Value = tnRed[(int)tank.Orient].Image;
+
             }
             foreach (var tank in tanks2) {
                 dgvGameField.Rows[tank.X].Cells[tank.Y].Value = tnBlue[(int)tank.Orient].Image;
             }
+
+            for (int i = 0; i < countCell; i++)
+                for (int j = 0; j < countCell; j++) {
+                    field[i, j] = Color.White;
+                    foreach (var tank in tanks1) {
+                        if (i == tank.X && j == tank.Y)
+                            field[i, j] = tank.Color;
+                    }
+                    foreach (var tank in tanks2) {
+                        if (i == tank.X && j == tank.Y)
+                            field[i, j] = tank.Color;
+                    }
+                }
+        }
+
+
+        private void Deffense(List<Tank> tanks1,List<Tank> tanks2 ) {
+            int x, y;
+            foreach (var tank1 in tanks1) {
+                tank1.Defense(field, out x,out y);
+                if (x != -1) {
+                    foreach (var tank2 in tanks2.ToList())
+                        if (tank2.X == x && tank2.Y == y)
+                            tanks2.Remove(tank2);
+                }
+            }
+
         }
 
     }

@@ -152,7 +152,7 @@
             this.btnStartGame.Name = "btnStartGame";
             this.btnStartGame.Size = new System.Drawing.Size(159, 41);
             this.btnStartGame.TabIndex = 12;
-            this.btnStartGame.Text = "Выстрелить";
+            this.btnStartGame.Text = "Сделать ход";
             this.btnStartGame.UseVisualStyleBackColor = true;
             this.btnStartGame.Click += new System.EventHandler(this.btnStartGame_Click);
             // 
@@ -181,6 +181,7 @@
             this.button1.TabIndex = 14;
             this.button1.Text = "Переместить танки";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
