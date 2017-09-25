@@ -152,7 +152,7 @@
             this.btnStartGame.Name = "btnStartGame";
             this.btnStartGame.Size = new System.Drawing.Size(159, 41);
             this.btnStartGame.TabIndex = 12;
-            this.btnStartGame.Text = "Сделать ход";
+            this.btnStartGame.Text = "Выстрелить";
             this.btnStartGame.UseVisualStyleBackColor = true;
             this.btnStartGame.Click += new System.EventHandler(this.btnStartGame_Click);
             // 
@@ -218,7 +218,7 @@
         private System.Windows.Forms.TextBox tbPlayer1Name;
         private System.Windows.Forms.Button btnStartGame;
         private System.Windows.Forms.Button button1;
-        public System.Windows.Forms.DataGridView dgvGameField;
+        private System.Windows.Forms.DataGridView dgvGameField;
     }
 }
 
