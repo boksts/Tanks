@@ -15,191 +15,24 @@ namespace WinFormsClient {
         public static int TankVisible { get; set; }
         //число клеток
         public static int CountCell { get; set; }
-
+        //перемещение танка
+        public enum Movement {
+            Up = 0, Right, Down, Left
+        }       
+        //ориентация танка 
+        private Orientation _orient;
         public enum Orientation {
-            Direct = 0, Right, Back, Left
+            Direct = 0, Right, Back, Left  
         }
-        public Orientation Orient { get; set; }
+        public Orientation Orient {
+            get { return _orient; }
+            set { _orient = ((int)value == -1) ? Orientation.Left : value; }
+        }
 
-
-        //оборона танка
-        public void Defense(Color[,] field,  out int x, out int y, bool attack = false) {
-            int x1 = (X - TankVisible) >= 0 ? X - TankVisible : 0;
-            int xN = (X + TankVisible) < CountCell ? X + TankVisible : CountCell - 1;
-            int y1 = (Y - TankVisible) >= 0 ? Y - TankVisible : 0;
-            int yN = (Y + TankVisible) < CountCell ? Y + TankVisible : CountCell - 1;
-            x = y = -1;
-
-            for (int i = x1; i <= xN; i++)
-                for (int j = y1; j <= yN; j++) {
-                    if (field[i, j] != Color && field[i, j] != Color.White) {
-                       
-                        //танк на одной линии с противником
-                        if (i == X) {
-                            if (j < Y) {
-                                if (Orient == Orientation.Left) {
-                                    x = i;
-                                    y = j;
-                                }
-                                else Orient = (Orient == Tank.Orientation.Direct)
-                                    ? Orient = Tank.Orientation.Left
-                                    : Orient - 1;
-                            }
-                            else if (j > Y) {
-                                if (Orient == Orientation.Right) {
-                                    x = i;
-                                    y = j;
-                                }
-                                else Orient = (Orient == Tank.Orientation.Direct)
-                                    ? Orient = Tank.Orientation.Left
-                                    : Orient - 1;
-                            }
-                            return;
-                        }
-
-                        //танк на одной линии с противником
-                        if (j == Y) {
-                            if (i < X) {
-                                if (Orient == Orientation.Direct) {
-                                    x = i;
-                                    y = j;
-                                }
-                                else Orient = (Orient == Tank.Orientation.Direct)
-                                    ? Orient = Tank.Orientation.Left
-                                    : Orient - 1;
-                            }
-                            if (i > X) {
-                                if (Orient == Orientation.Back) {
-                                    x = i;
-                                    y = j;
-                                }
-                                else Orient = (Orient == Tank.Orientation.Direct)
-                                    ? Orient = Tank.Orientation.Left
-                                    : Orient - 1;
-                            }
-                            
-                            return; 
-                        }
-
-                        //танк не на одной линии
-                        if (Math.Abs(i - X) < Math.Abs(j - Y)) {
-                            //танк движется вверх
-                            if (i < X) {
-                                if (Orient == Orientation.Back || Orient == Orientation.Direct) {  
-                                    if(field[X-1, Y] == Color.White) {
-                                        X--;
-                                        field[X, Y] = Color;
-                                        field[X+1, Y] = Color.White;
-                                    }
-                                }      
-                                else Orient --;
-                                return;
-                            }
-                            //танк движется вниз
-                            if (i > X) {
-                                if (Orient == Orientation.Back || Orient == Orientation.Direct) {
-                                    if (field[X + 1, Y] == Color.White) {
-                                        X++;
-                                        field[X, Y] = Color;
-                                        field[X-1, Y] = Color.White;
-                                    }
-                                }
-                                else Orient --;
-                                return;
-                            }
-                        }
-
-                        //танк не на одной линии
-                        else {
-                            //танк движется вверх
-                            if (j < Y) {
-                                if (Orient == Orientation.Left || Orient == Orientation.Right){
-                                    if (field[X, Y - 1] == Color.White) {
-                                        Y--;
-                                        field[X, Y] = Color;
-                                        field[X, Y+1] = Color.White;
-                                    }
-                                }
-                                else 
-                                    Orient = (Orient == Tank.Orientation.Direct)
-                                        ? Orient = Tank.Orientation.Left
-                                        : Orient - 1;
-                                return;
-                            }
-                            //танк движется вниз
-                            if (j > Y) {
-                                if (Orient == Orientation.Left || Orient == Orientation.Right) {
-                                    if (field[X, Y + 1] == Color.White) {
-                                        Y++;
-                                        field[X, Y] = Color;
-                                        field[X, Y-1] = Color.White;
-                                    }
-                                }
-                                else 
-                                    Orient = (Orient == Tank.Orientation.Direct)
-                                        ? Orient = Tank.Orientation.Left
-                                        : Orient - 1;
-                                return;
-                            }
-                        }
-                    }
-
-
-                }
-
-            if (attack) {
-                if (X - TankVisible < 0) {
-                    if (Orient == Orientation.Back || Orient == Orientation.Direct) {
-                        if (field[X + 1, Y] == Color.White) {
-                            X++;
-                            field[X, Y] = Color;
-                            field[X-1, Y] = Color.White;
-                        }
-                    }
-                    else Orient--;
-                    return;
-                }
-                if (X + TankVisible > CountCell) {
-                    if (Orient == Orientation.Back || Orient == Orientation.Direct) {
-                        if (field[X - 1, Y] == Color.White) {
-                            X--;
-                            field[X, Y] = Color;
-                            field[X+1, Y] = Color.White;
-                        }
-                    }
-                    else Orient--;
-                    return;
-                }
-                if (Y - TankVisible < 0) {
-                    if (Orient == Orientation.Left || Orient == Orientation.Right) {
-                        if (field[X, Y + 1] == Color.White) {
-                            Y++;
-                            field[X, Y] = Color;
-                            field[X, Y-1] = Color.White;
-                        }
-                    }
-                    else
-                        Orient = (Orient == Tank.Orientation.Direct)
-                            ? Orient = Tank.Orientation.Left
-                            : Orient - 1;
-                    return;
-                }
-                if (Y + TankVisible > CountCell) {
-                    if (Orient == Orientation.Left || Orient == Orientation.Right) {
-                        if (field[X, Y - 1] == Color.White) {
-                            Y--;
-                            field[X, Y] = Color;
-                            field[X, Y+1] = Color.White;
-                        }
-                    }
-                    else
-                        Orient = (Orient == Tank.Orientation.Direct)
-                            ? Orient = Tank.Orientation.Left
-                            : Orient - 1;
-                    return;
-                }
-
-                if (Color == Color.Blue)
+        //перемещение танка
+        public void Move(Movement move, Color[,] field) {
+            switch (move) {
+                case Movement.Up:
                     if (Orient == Orientation.Back || Orient == Orientation.Direct) {
                         if (field[X - 1, Y] == Color.White) {
                             X--;
@@ -208,7 +41,8 @@ namespace WinFormsClient {
                         }
                     }
                     else Orient--;
-                else {
+                    break;
+                case Movement.Down:
                     if (Orient == Orientation.Back || Orient == Orientation.Direct) {
                         if (field[X + 1, Y] == Color.White) {
                             X++;
@@ -217,10 +51,118 @@ namespace WinFormsClient {
                         }
                     }
                     else Orient--;
-                }
-        
-
+                    break;
+                case Movement.Left:
+                    if (Orient == Orientation.Left || Orient == Orientation.Right) {
+                        if (field[X, Y - 1] == Color.White) {
+                            Y--;
+                            field[X, Y] = Color;
+                            field[X, Y + 1] = Color.White;
+                        }
+                    }
+                    else
+                        Orient--;
+                    break;
+                case Movement.Right:
+                    if (Orient == Orientation.Left || Orient == Orientation.Right) {
+                        if (field[X, Y + 1] == Color.White) {
+                            Y++;
+                            field[X, Y] = Color;
+                            field[X, Y - 1] = Color.White;
+                        }
+                    }
+                    else
+                        Orient--;
+                    break;
             }
         }
+
+        //оборона танка и защита
+        public void Strategy(out int x, out int y, Color[,] field, bool attack) {
+            int vis = 0;
+            do {
+                vis++;
+                int x1 = (X - vis) >= 0 ? X - vis : 0;
+                int xN = (X + vis) < CountCell ? X + vis : CountCell - 1;
+                int y1 = (Y - vis) >= 0 ? Y - vis : 0;
+                int yN = (Y + vis) < CountCell ? Y + vis : CountCell - 1;
+                x = y = -1;
+
+                //оборона
+                for (int i = x1; i <= xN; i++)
+                    for (int j = y1; j <= yN; j++) {
+                        if (field[i, j] != Color && field[i, j] != Color.White) {                 
+                            //танк на одной линии с противником
+                            if (i == X) {
+                                if (j < Y) {
+                                    if (Orient == Orientation.Left) {x = i; y = j; }
+                                    else Orient--;
+                                }
+                                else if (j > Y) {
+                                    if (Orient == Orientation.Right) {x = i; y = j; }
+                                    else Orient --;
+                                }
+                                return;
+                            }
+                            //танк на одной линии с противником
+                            if (j == Y) {
+                                if (i < X) {
+                                    if (Orient == Orientation.Direct) {x = i; y = j; }
+                                    else Orient --;
+                                }
+                                if (i > X) {
+                                    if (Orient == Orientation.Back) {x = i; y = j; }
+                                    else Orient --;
+                                }                          
+                                return; 
+                            }
+
+                            //танк не на одной линии
+                            if (Math.Abs(i - X) < Math.Abs(j - Y)) {
+                                //танк движется вверх
+                                if (i < X) Move(Movement.Up, field); 
+                                //танк движется вниз
+                                if (i > X) Move(Movement.Down, field);
+                                return;
+                            }
+                            //танк не на одной линии
+                            else {
+                                //танк движется вверх
+                                if (j < Y) Move(Movement.Left, field);
+                                //танк движется вниз
+                                if (j > Y) Move(Movement.Right, field);
+                                return;
+                            }
+                        }
+                    }
+            } while (vis < TankVisible);
+            
+            //атака
+            if (attack)
+                Attack(field);
+           
+        }
+        public void Attack(Color[,] field) {
+            if (X - TankVisible < 0) {
+                Move(Movement.Down, field);
+                return;
+            }
+            if (X + TankVisible > CountCell) {
+                Move(Movement.Up, field);
+                return;
+            }
+            if (Y - TankVisible < 0) {
+                Move(Movement.Right, field);
+                return;
+            }
+            if (Y + TankVisible > CountCell) {
+                Move(Movement.Left, field);
+                return;
+            }
+
+            if (Color == Color.Blue)  Move(Movement.Up, field);
+            else Move(Movement.Down, field);
+        }
     }
+
 }

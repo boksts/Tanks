@@ -13,7 +13,7 @@ namespace WinFormsClient {
         //размер клетки
         protected readonly int sizeCell = 20;
         //число танков кажждой команды
-        private readonly int tanksCount = 10;
+        private readonly int tanksCount = 3;
         //видимость танка
         private readonly int tankVisible = 5;
 
@@ -26,7 +26,6 @@ namespace WinFormsClient {
         private Color[,] field;
 
         //инициализация танков
-
         private void InitTanks(ref List<Tank> tanks, Color color) {
             Random rand;
             if (color == Color.Blue)
@@ -48,7 +47,7 @@ namespace WinFormsClient {
                     if (color == Color.Blue)
                         x = rand.Next(15, 30);
                     else {
-                        x = rand.Next(0, 15);
+                        x = rand.Next(0, 30);
                     }
                     y = rand.Next(0, 30);
                     foreach (var tank in tanks) {
@@ -137,19 +136,19 @@ namespace WinFormsClient {
                             field[i, j] = tank.Color;
                     }
                 }
+
         }
 
 
-        private void Deffense(List<Tank> tanks1,List<Tank> tanks2, bool attack = false) {
+        private void Strategy(List<Tank> tanks1,List<Tank> tanks2, bool attack = false) {
             int x, y;
             foreach (var tank1 in tanks1) {
-                tank1.Defense(field, out x,out y, attack);
+                tank1.Strategy(out x, out y, field, attack);
                 if (x != -1) {
                     foreach (var tank2 in tanks2.ToList())
                         if (tank2.X == x && tank2.Y == y)
                             tanks2.Remove(tank2);
                 }
-
             }
 
         }
