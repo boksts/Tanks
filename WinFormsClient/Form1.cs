@@ -27,9 +27,17 @@ namespace WinFormsClient {
 
         private void btnStartGame_Click(object sender, EventArgs e) {
             //Tank.Attack(tanks1, tanks2);
-            Deffense(tanks1, tanks2);
-            UpdateField();
-            Deffense(tanks2, tanks1);
+            if (rbP1Defense.Checked)
+                Deffense(tanks2, tanks1);
+            else {
+                Deffense(tanks2, tanks1, attack:true);
+            }
+            if (rbP2Defense.Checked)
+                Deffense(tanks1, tanks2);
+            else {
+                Deffense(tanks1, tanks2, attack: true);
+            }
+
             UpdateField();
 
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,8 @@ namespace WinFormsClient {
     class Tank {
         public int X { get; set; }
         public int Y { get; set; }
-        public bool Flag { get; set; }
+        //цвет танка
+        public Color Color { get; set; }
         //видиомть танка
         public static int TankVisible { get; set; }
         //число клеток
@@ -20,135 +22,205 @@ namespace WinFormsClient {
         public Orientation Orient { get; set; }
 
 
-        //поражение танка противника в области видимости
-        public static void Attack(List<Tank> tanks1, List<Tank> tanks2) {
-            foreach (var tank1 in tanks1) {
-                foreach (var tank2 in tanks2.ToList()) {
-                    switch (tank1.Orient) {
-                        case Tank.Orientation.Direct:
-                            if (tank1.Y == tank2.Y)
-                                if (Math.Abs(tank1.X - tank2.X) <= TankVisible && tank1.X - tank2.X > 0)
-                                    tanks2.Remove(tank2);
-                            break;
+        //оборона танка
+        public void Defense(Color[,] field,  out int x, out int y, bool attack = false) {
+            int x1 = (X - TankVisible) >= 0 ? X - TankVisible : 0;
+            int xN = (X + TankVisible) < CountCell ? X + TankVisible : CountCell - 1;
+            int y1 = (Y - TankVisible) >= 0 ? Y - TankVisible : 0;
+            int yN = (Y + TankVisible) < CountCell ? Y + TankVisible : CountCell - 1;
+            x = y = -1;
 
-                        case Tank.Orientation.Right:
-                            if (tank1.X == tank2.X)
-                                if (Math.Abs(tank1.Y - tank2.Y) <= TankVisible && tank1.Y - tank2.Y < 0)
-                                    tanks2.Remove(tank2);
-                            break;
-                        case Tank.Orientation.Back:
-                            if (tank1.Y == tank2.Y)
-                                if (Math.Abs(tank1.X - tank2.X) <= TankVisible && tank1.X - tank2.X < 0)
-                                    tanks2.Remove(tank2);
-                            break;
-                        case Tank.Orientation.Left:
-                            if (tank1.X == tank2.X)
-                                if (Math.Abs(tank1.Y - tank2.Y) <= TankVisible && tank1.Y - tank2.Y > 0)
-                                    tanks2.Remove(tank2);
-                            break;
-                    }
-                }
-            }
-        }
-
-        //перемещение и поворот танка
-        public static void MoveRotateTank(List<Tank> tank) {
-            Random rand = new Random(DateTime.Now.Millisecond);
-            for (int i = 0; i < tank.Count; i++) {
-                int move = rand.Next(-1, 1);
-                int rotate = rand.Next(-5, 5);
-                switch (rotate) {
-                    //поворот налево
-                    case -1:
-                        tank[i].Orient = (tank[i].Orient == Tank.Orientation.Direct)
-                            ? tank[i].Orient = Tank.Orientation.Left
-                            : tank[i].Orient - 1;
-                        break;
-                    //поворот направо
-                    case 1:
-                        tank[i].Orient = (tank[i].Orient == Tank.Orientation.Left)
-                            ? tank[i].Orient = Tank.Orientation.Direct
-                            : tank[i].Orient + 1;
-                        break;
-                }
-
-                switch (move) {
-                    //движение назад
-                    case -1:
-                        switch (tank[i].Orient) {
-                            case Tank.Orientation.Back:
-                                if (tank[i].X != 0)
-                                    tank[i].X--;
-                                break;
-                            case Tank.Orientation.Right:
-                                if (tank[i].Y != 0)
-                                    tank[i].Y--;
-                                break;
-                            case Tank.Orientation.Direct:
-                                if (tank[i].X != CountCell - 1)
-                                    tank[i].X++;
-                                break;
-                            case Tank.Orientation.Left:
-                                if (tank[i].Y != CountCell - 1)
-                                    tank[i].Y++;
-                                break;
+            for (int i = x1; i <= xN; i++)
+                for (int j = y1; j <= yN; j++) {
+                    if (field[i, j] != Color && field[i, j] != Color.White) {
+                       
+                        //танк на одной линии с противником
+                        if (i == X) {
+                            if (j < Y) {
+                                if (Orient == Orientation.Left) {
+                                    x = i;
+                                    y = j;
+                                }
+                                else Orient = (Orient == Tank.Orientation.Direct)
+                                    ? Orient = Tank.Orientation.Left
+                                    : Orient - 1;
+                            }
+                            else if (j > Y) {
+                                if (Orient == Orientation.Right) {
+                                    x = i;
+                                    y = j;
+                                }
+                                else Orient = (Orient == Tank.Orientation.Direct)
+                                    ? Orient = Tank.Orientation.Left
+                                    : Orient - 1;
+                            }
+                            return;
                         }
-                        break;
 
-                    //движение вперед
-                    case 1:
-                        switch (tank[i].Orient) {
-                            case Tank.Orientation.Direct:
-                                if (tank[i].X != 0)
-                                    tank[i].X--;
-                                break;
-                            case Tank.Orientation.Left:
-                                if (tank[i].Y != 0)
-                                    tank[i].Y--;
-                                break;
-                            case Tank.Orientation.Back:
-                                if (tank[i].X != CountCell - 1)
-                                    tank[i].X++;
-                                break;
-                            case Tank.Orientation.Right:
-                                if (tank[i].Y != CountCell - 1)
-                                    tank[i].Y++;
-                                break;
+                        //танк на одной линии с противником
+                        if (j == Y) {
+                            if (i < X) {
+                                if (Orient == Orientation.Direct) {
+                                    x = i;
+                                    y = j;
+                                }
+                                else Orient = (Orient == Tank.Orientation.Direct)
+                                    ? Orient = Tank.Orientation.Left
+                                    : Orient - 1;
+                            }
+                            if (i > X) {
+                                if (Orient == Orientation.Back) {
+                                    x = i;
+                                    y = j;
+                                }
+                                else Orient = (Orient == Tank.Orientation.Direct)
+                                    ? Orient = Tank.Orientation.Left
+                                    : Orient - 1;
+                            }
+                            
+                            return; 
                         }
-                        break;
+
+                        //танк не на одной линии
+                        if (Math.Abs(i - X) < Math.Abs(j - Y)) {
+                            //танк движется вверх
+                            if (i < X) {
+                                if (Orient == Orientation.Back || Orient == Orientation.Direct) {  
+                                    if(field[X-1, Y] == Color.White) {
+                                        X--;
+                                        field[X, Y] = Color;
+                                        field[X+1, Y] = Color.White;
+                                    }
+                                }      
+                                else Orient --;
+                                return;
+                            }
+                            //танк движется вниз
+                            if (i > X) {
+                                if (Orient == Orientation.Back || Orient == Orientation.Direct) {
+                                    if (field[X + 1, Y] == Color.White) {
+                                        X++;
+                                        field[X, Y] = Color;
+                                        field[X-1, Y] = Color.White;
+                                    }
+                                }
+                                else Orient --;
+                                return;
+                            }
+                        }
+
+                        //танк не на одной линии
+                        else {
+                            //танк движется вверх
+                            if (j < Y) {
+                                if (Orient == Orientation.Left || Orient == Orientation.Right){
+                                    if (field[X, Y - 1] == Color.White) {
+                                        Y--;
+                                        field[X, Y] = Color;
+                                        field[X, Y+1] = Color.White;
+                                    }
+                                }
+                                else 
+                                    Orient = (Orient == Tank.Orientation.Direct)
+                                        ? Orient = Tank.Orientation.Left
+                                        : Orient - 1;
+                                return;
+                            }
+                            //танк движется вниз
+                            if (j > Y) {
+                                if (Orient == Orientation.Left || Orient == Orientation.Right) {
+                                    if (field[X, Y + 1] == Color.White) {
+                                        Y++;
+                                        field[X, Y] = Color;
+                                        field[X, Y-1] = Color.White;
+                                    }
+                                }
+                                else 
+                                    Orient = (Orient == Tank.Orientation.Direct)
+                                        ? Orient = Tank.Orientation.Left
+                                        : Orient - 1;
+                                return;
+                            }
+                        }
+                    }
+
+
                 }
+
+            if (attack) {
+                if (X - TankVisible < 0) {
+                    if (Orient == Orientation.Back || Orient == Orientation.Direct) {
+                        if (field[X + 1, Y] == Color.White) {
+                            X++;
+                            field[X, Y] = Color;
+                            field[X-1, Y] = Color.White;
+                        }
+                    }
+                    else Orient--;
+                    return;
+                }
+                if (X + TankVisible > CountCell) {
+                    if (Orient == Orientation.Back || Orient == Orientation.Direct) {
+                        if (field[X - 1, Y] == Color.White) {
+                            X--;
+                            field[X, Y] = Color;
+                            field[X+1, Y] = Color.White;
+                        }
+                    }
+                    else Orient--;
+                    return;
+                }
+                if (Y - TankVisible < 0) {
+                    if (Orient == Orientation.Left || Orient == Orientation.Right) {
+                        if (field[X, Y + 1] == Color.White) {
+                            Y++;
+                            field[X, Y] = Color;
+                            field[X, Y-1] = Color.White;
+                        }
+                    }
+                    else
+                        Orient = (Orient == Tank.Orientation.Direct)
+                            ? Orient = Tank.Orientation.Left
+                            : Orient - 1;
+                    return;
+                }
+                if (Y + TankVisible > CountCell) {
+                    if (Orient == Orientation.Left || Orient == Orientation.Right) {
+                        if (field[X, Y - 1] == Color.White) {
+                            Y--;
+                            field[X, Y] = Color;
+                            field[X, Y+1] = Color.White;
+                        }
+                    }
+                    else
+                        Orient = (Orient == Tank.Orientation.Direct)
+                            ? Orient = Tank.Orientation.Left
+                            : Orient - 1;
+                    return;
+                }
+
+                if (Color == Color.Blue)
+                    if (Orient == Orientation.Back || Orient == Orientation.Direct) {
+                        if (field[X - 1, Y] == Color.White) {
+                            X--;
+                            field[X, Y] = Color;
+                            field[X + 1, Y] = Color.White;
+                        }
+                    }
+                    else Orient--;
+                else {
+                    if (Orient == Orientation.Back || Orient == Orientation.Direct) {
+                        if (field[X + 1, Y] == Color.White) {
+                            X++;
+                            field[X, Y] = Color;
+                            field[X - 1, Y] = Color.White;
+                        }
+                    }
+                    else Orient--;
+                }
+        
+
             }
         }
-
-        //инициализация танков
-        public static void InitTanks(List<Tank> tanks, int tanksCount, bool blue) {
-            Random rand = new Random(DateTime.Now.Millisecond);
-            tanks = new List<Tank>();
-
-            for (int i = 0; i < tanksCount; i++) {
-                int x, y;
-                bool flag = false;
-
-                do {
-                    //позиция на поле
-                    if (blue)
-                        x = rand.Next(15, 30);
-                    else {
-                        x = rand.Next(0, 15);
-                    }
-                    y = rand.Next(0, 30);
-                    foreach (var tank in tanks) {
-                        if (tank.X == x && tank.Y == y)
-                            flag = true;
-                    }
-                } while (flag);
-
-                //ориентация
-                int rotate = rand.Next(0, 3);
-                Tank t = new Tank() { Flag = true, X = x, Y = y, Orient = (Tank.Orientation)rotate };
-                tanks.Add(t);
-            }
-        }
-
     }
 }

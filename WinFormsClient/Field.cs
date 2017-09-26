@@ -13,9 +13,9 @@ namespace WinFormsClient {
         //размер клетки
         protected readonly int sizeCell = 20;
         //число танков кажждой команды
-        private readonly int tanksCount = 5;
+        private readonly int tanksCount = 10;
         //видимость танка
-        private readonly int tankVisible = 10;
+        private readonly int tankVisible = 5;
 
         private PictureBox[] tnBlue;
         private PictureBox[] tnRed;
@@ -140,15 +140,16 @@ namespace WinFormsClient {
         }
 
 
-        private void Deffense(List<Tank> tanks1,List<Tank> tanks2 ) {
+        private void Deffense(List<Tank> tanks1,List<Tank> tanks2, bool attack = false) {
             int x, y;
             foreach (var tank1 in tanks1) {
-                tank1.Defense(field, out x,out y);
+                tank1.Defense(field, out x,out y, attack);
                 if (x != -1) {
                     foreach (var tank2 in tanks2.ToList())
                         if (tank2.X == x && tank2.Y == y)
                             tanks2.Remove(tank2);
                 }
+
             }
 
         }

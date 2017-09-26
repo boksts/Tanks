@@ -53,7 +53,7 @@
             this.groupBox2.Size = new System.Drawing.Size(206, 111);
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Игрок 2";
+            this.groupBox2.Text = "Игрок 2 (красные)";
             // 
             // rbP2Defense
             // 
@@ -105,7 +105,7 @@
             this.groupBox1.Size = new System.Drawing.Size(206, 111);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Игрок 1";
+            this.groupBox1.Text = "Игрок 1 (синие)";
             // 
             // rbP1Defense
             // 
