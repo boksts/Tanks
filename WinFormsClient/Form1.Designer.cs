@@ -33,12 +33,21 @@
             this.rbP1Attack = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.tbPlayer1Name = new System.Windows.Forms.TextBox();
-            this.btnStartGame = new System.Windows.Forms.Button();
+            this.btnStrokeCount = new System.Windows.Forms.Button();
             this.dgvGameField = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnGameStart = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.nudTankVisible = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
+            this.nudTanksCount = new System.Windows.Forms.NumericUpDown();
+            this.lblStrokeCount = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGameField)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTankVisible)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTanksCount)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -48,9 +57,9 @@
             this.groupBox2.Controls.Add(this.rbP2Attack);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.tbPlayer2Name);
-            this.groupBox2.Location = new System.Drawing.Point(474, 139);
+            this.groupBox2.Location = new System.Drawing.Point(474, 111);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(206, 111);
+            this.groupBox2.Size = new System.Drawing.Size(206, 95);
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Игрок 2 (красные)";
@@ -59,7 +68,7 @@
             // 
             this.rbP2Defense.AutoSize = true;
             this.rbP2Defense.Checked = true;
-            this.rbP2Defense.Location = new System.Drawing.Point(96, 74);
+            this.rbP2Defense.Location = new System.Drawing.Point(96, 66);
             this.rbP2Defense.Name = "rbP2Defense";
             this.rbP2Defense.Size = new System.Drawing.Size(88, 21);
             this.rbP2Defense.TabIndex = 8;
@@ -70,7 +79,7 @@
             // rbP2Attack
             // 
             this.rbP2Attack.AutoSize = true;
-            this.rbP2Attack.Location = new System.Drawing.Point(11, 74);
+            this.rbP2Attack.Location = new System.Drawing.Point(11, 66);
             this.rbP2Attack.Name = "rbP2Attack";
             this.rbP2Attack.Size = new System.Drawing.Size(68, 21);
             this.rbP2Attack.TabIndex = 7;
@@ -102,7 +111,7 @@
             this.groupBox1.Controls.Add(this.tbPlayer1Name);
             this.groupBox1.Location = new System.Drawing.Point(474, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(206, 111);
+            this.groupBox1.Size = new System.Drawing.Size(206, 93);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Игрок 1 (синие)";
@@ -111,7 +120,7 @@
             // 
             this.rbP1Defense.AutoSize = true;
             this.rbP1Defense.Checked = true;
-            this.rbP1Defense.Location = new System.Drawing.Point(96, 74);
+            this.rbP1Defense.Location = new System.Drawing.Point(96, 64);
             this.rbP1Defense.Name = "rbP1Defense";
             this.rbP1Defense.Size = new System.Drawing.Size(88, 21);
             this.rbP1Defense.TabIndex = 8;
@@ -122,7 +131,7 @@
             // rbP1Attack
             // 
             this.rbP1Attack.AutoSize = true;
-            this.rbP1Attack.Location = new System.Drawing.Point(11, 74);
+            this.rbP1Attack.Location = new System.Drawing.Point(11, 64);
             this.rbP1Attack.Name = "rbP1Attack";
             this.rbP1Attack.Size = new System.Drawing.Size(68, 21);
             this.rbP1Attack.TabIndex = 7;
@@ -145,16 +154,17 @@
             this.tbPlayer1Name.Size = new System.Drawing.Size(153, 22);
             this.tbPlayer1Name.TabIndex = 5;
             // 
-            // btnStartGame
+            // btnStrokeCount
             // 
-            this.btnStartGame.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStartGame.Location = new System.Drawing.Point(499, 256);
-            this.btnStartGame.Name = "btnStartGame";
-            this.btnStartGame.Size = new System.Drawing.Size(159, 41);
-            this.btnStartGame.TabIndex = 12;
-            this.btnStartGame.Text = "Сделать ход";
-            this.btnStartGame.UseVisualStyleBackColor = true;
-            this.btnStartGame.Click += new System.EventHandler(this.btnStartGame_Click);
+            this.btnStrokeCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnStrokeCount.Enabled = false;
+            this.btnStrokeCount.Location = new System.Drawing.Point(499, 390);
+            this.btnStrokeCount.Name = "btnStrokeCount";
+            this.btnStrokeCount.Size = new System.Drawing.Size(159, 41);
+            this.btnStrokeCount.TabIndex = 12;
+            this.btnStrokeCount.Text = "Сделать ход";
+            this.btnStrokeCount.UseVisualStyleBackColor = true;
+            this.btnStrokeCount.Click += new System.EventHandler(this.btnStrokeCount_Click);
             // 
             // dgvGameField
             // 
@@ -172,26 +182,102 @@
             this.dgvGameField.Size = new System.Drawing.Size(274, 222);
             this.dgvGameField.TabIndex = 13;
             // 
-            // button1
+            // groupBox3
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(499, 303);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(159, 41);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "Переместить танки";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Visible = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.btnGameStart);
+            this.groupBox3.Controls.Add(this.label4);
+            this.groupBox3.Controls.Add(this.nudTankVisible);
+            this.groupBox3.Controls.Add(this.label2);
+            this.groupBox3.Controls.Add(this.nudTanksCount);
+            this.groupBox3.Location = new System.Drawing.Point(474, 212);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(205, 137);
+            this.groupBox3.TabIndex = 14;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Характеристики танков";
+            // 
+            // btnGameStart
+            // 
+            this.btnGameStart.Location = new System.Drawing.Point(31, 92);
+            this.btnGameStart.Name = "btnGameStart";
+            this.btnGameStart.Size = new System.Drawing.Size(147, 39);
+            this.btnGameStart.TabIndex = 4;
+            this.btnGameStart.Text = "Начать игру";
+            this.btnGameStart.UseVisualStyleBackColor = true;
+            this.btnGameStart.Click += new System.EventHandler(this.btnGameStart_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(10, 63);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(138, 17);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Область видимости";
+            // 
+            // nudTankVisible
+            // 
+            this.nudTankVisible.Location = new System.Drawing.Point(151, 61);
+            this.nudTankVisible.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nudTankVisible.Name = "nudTankVisible";
+            this.nudTankVisible.Size = new System.Drawing.Size(48, 22);
+            this.nudTankVisible.TabIndex = 2;
+            this.nudTankVisible.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(10, 34);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(135, 17);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Количество танков";
+            // 
+            // nudTanksCount
+            // 
+            this.nudTanksCount.Location = new System.Drawing.Point(151, 32);
+            this.nudTanksCount.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nudTanksCount.Name = "nudTanksCount";
+            this.nudTanksCount.Size = new System.Drawing.Size(48, 22);
+            this.nudTanksCount.TabIndex = 0;
+            this.nudTanksCount.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
+            // lblStrokeCount
+            // 
+            this.lblStrokeCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblStrokeCount.AutoSize = true;
+            this.lblStrokeCount.Location = new System.Drawing.Point(474, 352);
+            this.lblStrokeCount.Name = "lblStrokeCount";
+            this.lblStrokeCount.Size = new System.Drawing.Size(145, 17);
+            this.lblStrokeCount.TabIndex = 15;
+            this.lblStrokeCount.Text = "Всего сделано ходов";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(692, 356);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(692, 470);
+            this.Controls.Add(this.lblStrokeCount);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.dgvGameField);
-            this.Controls.Add(this.btnStartGame);
+            this.Controls.Add(this.btnStrokeCount);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Name = "Form1";
@@ -201,7 +287,12 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGameField)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTankVisible)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTanksCount)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -217,9 +308,15 @@
         private System.Windows.Forms.RadioButton rbP1Attack;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbPlayer1Name;
-        private System.Windows.Forms.Button btnStartGame;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnStrokeCount;
         private System.Windows.Forms.DataGridView dgvGameField;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.NumericUpDown nudTanksCount;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.NumericUpDown nudTankVisible;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblStrokeCount;
+        private System.Windows.Forms.Button btnGameStart;
     }
 }
 

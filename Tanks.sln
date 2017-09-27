@@ -4,6 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsClient", "WinFormsClient\WinFormsClient.csproj", "{21714C06-0A2C-4EE8-A99E-CE16614E8326}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F000C449-53C6-4304-96D6-B341E807B118} = {F000C449-53C6-4304-96D6-B341E807B118}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfServer", "WcfServer\WcfServer.csproj", "{F000C449-53C6-4304-96D6-B341E807B118}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +20,10 @@ Global
 		{21714C06-0A2C-4EE8-A99E-CE16614E8326}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21714C06-0A2C-4EE8-A99E-CE16614E8326}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21714C06-0A2C-4EE8-A99E-CE16614E8326}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F000C449-53C6-4304-96D6-B341E807B118}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F000C449-53C6-4304-96D6-B341E807B118}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F000C449-53C6-4304-96D6-B341E807B118}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F000C449-53C6-4304-96D6-B341E807B118}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

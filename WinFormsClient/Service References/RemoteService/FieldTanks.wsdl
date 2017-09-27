@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FieldTanks" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:29558/FieldTanks.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:29558/FieldTanks.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:29558/FieldTanks.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WcfServer" />
+      <xsd:import schemaLocation="http://localhost:29558/FieldTanks.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IFieldTanks_InitTanks_InputMessage">
+    <wsdl:part name="parameters" element="tns:InitTanks" />
+  </wsdl:message>
+  <wsdl:message name="IFieldTanks_InitTanks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InitTanksResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFieldTanks_FillField_InputMessage">
+    <wsdl:part name="parameters" element="tns:FillField" />
+  </wsdl:message>
+  <wsdl:message name="IFieldTanks_FillField_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FillFieldResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFieldTanks_InitField_InputMessage">
+    <wsdl:part name="parameters" element="tns:InitField" />
+  </wsdl:message>
+  <wsdl:message name="IFieldTanks_InitField_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InitFieldResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFieldTanks_ApplyStrategy_InputMessage">
+    <wsdl:part name="parameters" element="tns:ApplyStrategy" />
+  </wsdl:message>
+  <wsdl:message name="IFieldTanks_ApplyStrategy_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ApplyStrategyResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IFieldTanks">
+    <wsdl:operation name="InitTanks">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFieldTanks/InitTanks" message="tns:IFieldTanks_InitTanks_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFieldTanks/InitTanksResponse" message="tns:IFieldTanks_InitTanks_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FillField">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFieldTanks/FillField" message="tns:IFieldTanks_FillField_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFieldTanks/FillFieldResponse" message="tns:IFieldTanks_FillField_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InitField">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFieldTanks/InitField" message="tns:IFieldTanks_InitField_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFieldTanks/InitFieldResponse" message="tns:IFieldTanks_InitField_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ApplyStrategy">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFieldTanks/ApplyStrategy" message="tns:IFieldTanks_ApplyStrategy_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFieldTanks/ApplyStrategyResponse" message="tns:IFieldTanks_ApplyStrategy_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IFieldTanks" type="tns:IFieldTanks">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InitTanks">
+      <soap:operation soapAction="http://tempuri.org/IFieldTanks/InitTanks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FillField">
+      <soap:operation soapAction="http://tempuri.org/IFieldTanks/FillField" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InitField">
+      <soap:operation soapAction="http://tempuri.org/IFieldTanks/InitField" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApplyStrategy">
+      <soap:operation soapAction="http://tempuri.org/IFieldTanks/ApplyStrategy" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FieldTanks">
+    <wsdl:port name="BasicHttpBinding_IFieldTanks" binding="tns:BasicHttpBinding_IFieldTanks">
+      <soap:address location="http://localhost:29558/FieldTanks.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

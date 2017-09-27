@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a06fb7a8-d95f-4cb6-9292-cd9b2cab83d4" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:29558/FieldTanks.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="FieldTanks.xsd" MetadataType="Schema" ID="0c559fd7-cd61-416b-873c-f9979ab4b2aa" SourceId="1" SourceUrl="http://localhost:29558/FieldTanks.svc?xsd=xsd0" />
+    <MetadataFile FileName="FieldTanks1.xsd" MetadataType="Schema" ID="147f31d6-41aa-4a93-a07c-a45b34b93d71" SourceId="1" SourceUrl="http://localhost:29558/FieldTanks.svc?xsd=xsd3" />
+    <MetadataFile FileName="FieldTanks2.xsd" MetadataType="Schema" ID="6e991afb-add2-484a-8060-fd066029d7f3" SourceId="1" SourceUrl="http://localhost:29558/FieldTanks.svc?xsd=xsd2" />
+    <MetadataFile FileName="FieldTanks.wsdl" MetadataType="Wsdl" ID="14cde360-294e-414f-abb4-ac0d3dbcc954" SourceId="1" SourceUrl="http://localhost:29558/FieldTanks.svc?wsdl" />
+    <MetadataFile FileName="FieldTanks.disco" MetadataType="Disco" ID="ac1f31ef-4a11-4159-aa32-002ea5d214ee" SourceId="1" SourceUrl="http://localhost:29558/FieldTanks.svc?disco" />
+    <MetadataFile FileName="FieldTanks3.xsd" MetadataType="Schema" ID="0c3d803f-5b7d-403a-8f1c-9a922d033123" SourceId="1" SourceUrl="http://localhost:29558/FieldTanks.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
