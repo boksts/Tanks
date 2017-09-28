@@ -35,21 +35,13 @@ namespace WinFormsClient {
                 for (int j = 0; j < cellCount; j++) 
                         dgvGameField.Rows[i].Cells[j].Value = Image.FromFile(@"Pictures\white.jpg");
 
-            fieldTanksClient = new FieldTanksClient();
-            
-       
+            fieldTanksClient = new FieldTanksClient();            
         }
 
-        private void Init() {
-            
+        private void Init() {          
             tanksCount = int.Parse(nudTanksCount.Text);
             tankVisible = int.Parse(nudTankVisible.Text);
-            //инициализация отрисовки поля
-           // InitField();
-            //инициализация расчетного поля
 
-           // fieldTanksClient.InitField(cellCount,tanksCount,tankVisible);
-           
             //инициализация танков на поле         
             tanks = fieldTanksClient.InitTanks( tanksCount, tankVisible);
 
@@ -101,7 +93,7 @@ namespace WinFormsClient {
 
         //обновление отрисовки поля
         private void UpdateField() {
-           field = fieldTanksClient.FillField(tanks);
+             field = fieldTanksClient.FillField(tanks);
 
             for (int i = 0; i < cellCount; i++)
                 for (int j = 0; j < cellCount; j++) {
@@ -112,7 +104,8 @@ namespace WinFormsClient {
                         //синие танки
                         if (field[i * cellCount + j] > 0) {
                             dgvGameField.Rows[i].Cells[j].Value = tnBlue[Math.Abs(field[i * cellCount + j]) - 1].Image;
-                        }     
+                        }
+                        //красные танки
                         else {
                             dgvGameField.Rows[i].Cells[j].Value = tnRed[Math.Abs(field[i * cellCount + j]) - 1].Image;
                         }
@@ -122,7 +115,7 @@ namespace WinFormsClient {
 
         private void btnStrokeCount_Click(object sender, EventArgs e) {
             if (rbP1Defense.Checked)
-                tanks= fieldTanksClient.ApplyStrategy(tanks, FieldTanksTankColor.Blue, attack: false);
+                tanks = fieldTanksClient.ApplyStrategy(tanks, FieldTanksTankColor.Blue, attack: false);
             else {
                 tanks = fieldTanksClient.ApplyStrategy(tanks, FieldTanksTankColor.Blue, attack: true);
             }
@@ -131,9 +124,9 @@ namespace WinFormsClient {
                 tanks = fieldTanksClient.ApplyStrategy(tanks, FieldTanksTankColor.Red, attack: false);
             else {
                 tanks = fieldTanksClient.ApplyStrategy(tanks, FieldTanksTankColor.Red, attack: true);
-            }          
+            }
             UpdateField();
-          
+
             strokeCount++;
             lblStrokeCount.Text = "Всего сделано ходов " + strokeCount;
         }
@@ -142,9 +135,9 @@ namespace WinFormsClient {
             Init();
             nudTankVisible.Enabled = nudTanksCount.Enabled = false;
             btnGameStart.Enabled = false;
-            btnStrokeCount.Enabled = true;
-            
+            btnStrokeCount.Enabled = true;       
         }
+
 
     }
 }

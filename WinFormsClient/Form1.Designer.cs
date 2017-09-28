@@ -57,7 +57,7 @@
             this.groupBox2.Controls.Add(this.rbP2Attack);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.tbPlayer2Name);
-            this.groupBox2.Location = new System.Drawing.Point(474, 111);
+            this.groupBox2.Location = new System.Drawing.Point(493, 111);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(206, 95);
             this.groupBox2.TabIndex = 11;
@@ -109,7 +109,7 @@
             this.groupBox1.Controls.Add(this.rbP1Attack);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.tbPlayer1Name);
-            this.groupBox1.Location = new System.Drawing.Point(474, 12);
+            this.groupBox1.Location = new System.Drawing.Point(493, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(206, 93);
             this.groupBox1.TabIndex = 10;
@@ -158,7 +158,7 @@
             // 
             this.btnStrokeCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnStrokeCount.Enabled = false;
-            this.btnStrokeCount.Location = new System.Drawing.Point(499, 390);
+            this.btnStrokeCount.Location = new System.Drawing.Point(518, 390);
             this.btnStrokeCount.Name = "btnStrokeCount";
             this.btnStrokeCount.Size = new System.Drawing.Size(159, 41);
             this.btnStrokeCount.TabIndex = 12;
@@ -190,7 +190,7 @@
             this.groupBox3.Controls.Add(this.nudTankVisible);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.nudTanksCount);
-            this.groupBox3.Location = new System.Drawing.Point(474, 212);
+            this.groupBox3.Location = new System.Drawing.Point(493, 212);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(205, 137);
             this.groupBox3.TabIndex = 14;
@@ -263,7 +263,7 @@
             // 
             this.lblStrokeCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblStrokeCount.AutoSize = true;
-            this.lblStrokeCount.Location = new System.Drawing.Point(474, 352);
+            this.lblStrokeCount.Location = new System.Drawing.Point(493, 352);
             this.lblStrokeCount.Name = "lblStrokeCount";
             this.lblStrokeCount.Size = new System.Drawing.Size(145, 17);
             this.lblStrokeCount.TabIndex = 15;
@@ -273,7 +273,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(692, 470);
+            this.ClientSize = new System.Drawing.Size(711, 470);
             this.Controls.Add(this.lblStrokeCount);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.dgvGameField);
