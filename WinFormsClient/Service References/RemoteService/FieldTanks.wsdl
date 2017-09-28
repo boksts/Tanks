@@ -20,12 +20,6 @@
   <wsdl:message name="IFieldTanks_FillField_OutputMessage">
     <wsdl:part name="parameters" element="tns:FillFieldResponse" />
   </wsdl:message>
-  <wsdl:message name="IFieldTanks_InitField_InputMessage">
-    <wsdl:part name="parameters" element="tns:InitField" />
-  </wsdl:message>
-  <wsdl:message name="IFieldTanks_InitField_OutputMessage">
-    <wsdl:part name="parameters" element="tns:InitFieldResponse" />
-  </wsdl:message>
   <wsdl:message name="IFieldTanks_ApplyStrategy_InputMessage">
     <wsdl:part name="parameters" element="tns:ApplyStrategy" />
   </wsdl:message>
@@ -40,10 +34,6 @@
     <wsdl:operation name="FillField">
       <wsdl:input wsaw:Action="http://tempuri.org/IFieldTanks/FillField" message="tns:IFieldTanks_FillField_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IFieldTanks/FillFieldResponse" message="tns:IFieldTanks_FillField_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="InitField">
-      <wsdl:input wsaw:Action="http://tempuri.org/IFieldTanks/InitField" message="tns:IFieldTanks_InitField_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IFieldTanks/InitFieldResponse" message="tns:IFieldTanks_InitField_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ApplyStrategy">
       <wsdl:input wsaw:Action="http://tempuri.org/IFieldTanks/ApplyStrategy" message="tns:IFieldTanks_ApplyStrategy_InputMessage" />
@@ -63,15 +53,6 @@
     </wsdl:operation>
     <wsdl:operation name="FillField">
       <soap:operation soapAction="http://tempuri.org/IFieldTanks/FillField" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="InitField">
-      <soap:operation soapAction="http://tempuri.org/IFieldTanks/InitField" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

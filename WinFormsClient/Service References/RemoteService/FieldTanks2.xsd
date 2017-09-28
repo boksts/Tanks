@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WcfServer" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WcfServer" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:29558/FieldTanks.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfTank">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Tank" nillable="true" type="tns:Tank" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTank" nillable="true" type="tns:ArrayOfTank" />
+  <xs:complexType name="Tank">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Color" type="xs:int" />
+      <xs:element minOccurs="0" name="Orient" type="tns:Tank.Orientation" />
+      <xs:element minOccurs="0" name="X" type="xs:int" />
+      <xs:element minOccurs="0" name="Y" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Tank" nillable="true" type="tns:Tank" />
+  <xs:simpleType name="Tank.Orientation">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Direct">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Right">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Back">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Left">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Tank.Orientation" nillable="true" type="tns:Tank.Orientation" />
   <xs:simpleType name="FieldTanks.TankColor">
     <xs:restriction base="xs:string">
       <xs:enumeration value="Blue">

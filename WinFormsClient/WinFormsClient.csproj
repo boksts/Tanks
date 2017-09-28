@@ -110,6 +110,9 @@
     <None Include="Service References\RemoteService\FieldTanks3.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\RemoteService\WinFormsClient.RemoteService.Tank.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

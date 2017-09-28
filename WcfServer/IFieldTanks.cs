@@ -12,16 +12,15 @@ namespace WcfServer {
     public interface IFieldTanks {
 
         [OperationContract]
-        void InitTanks(FieldTanks.TankColor tankColor);
+        List<Tank> InitTanks(int tanksCount, int tankVisible);
 
         [OperationContract]
-        int[] FillField();
+        int[] FillField(List<Tank> tanks);
         
-        [OperationContract]
-        void InitField(int cellCount, int tanksCount, int tankVisible);
 
         [OperationContract]
-        void ApplyStrategy(FieldTanks.TankColor tankColor, bool attack = false);
+        List<Tank>  ApplyStrategy(List<Tank> tanks, FieldTanks.TankColor tankColor, bool attack);
+    
 
     }
 

@@ -10,7 +10,118 @@
 
 namespace WinFormsClient.RemoteService {
     using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Tank", Namespace="http://schemas.datacontract.org/2004/07/WcfServer")]
+    [System.SerializableAttribute()]
+    public partial class Tank : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ColorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WinFormsClient.RemoteService.Tank.Orientation OrientField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int XField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int YField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Color {
+            get {
+                return this.ColorField;
+            }
+            set {
+                if ((this.ColorField.Equals(value) != true)) {
+                    this.ColorField = value;
+                    this.RaisePropertyChanged("Color");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WinFormsClient.RemoteService.Tank.Orientation Orient {
+            get {
+                return this.OrientField;
+            }
+            set {
+                if ((this.OrientField.Equals(value) != true)) {
+                    this.OrientField = value;
+                    this.RaisePropertyChanged("Orient");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int X {
+            get {
+                return this.XField;
+            }
+            set {
+                if ((this.XField.Equals(value) != true)) {
+                    this.XField = value;
+                    this.RaisePropertyChanged("X");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Y {
+            get {
+                return this.YField;
+            }
+            set {
+                if ((this.YField.Equals(value) != true)) {
+                    this.YField = value;
+                    this.RaisePropertyChanged("Y");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+        
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+        [System.Runtime.Serialization.DataContractAttribute(Name="Tank.Orientation", Namespace="http://schemas.datacontract.org/2004/07/WcfServer")]
+        public enum Orientation : int {
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            Direct = 1,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            Right = 2,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            Back = 3,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            Left = 4,
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="FieldTanks.TankColor", Namespace="http://schemas.datacontract.org/2004/07/WcfServer")]
@@ -28,28 +139,22 @@ namespace WinFormsClient.RemoteService {
     public interface IFieldTanks {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFieldTanks/InitTanks", ReplyAction="http://tempuri.org/IFieldTanks/InitTanksResponse")]
-        void InitTanks(WinFormsClient.RemoteService.FieldTanksTankColor tankColor);
+        WinFormsClient.RemoteService.Tank[] InitTanks(int tanksCount, int tankVisible);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFieldTanks/InitTanks", ReplyAction="http://tempuri.org/IFieldTanks/InitTanksResponse")]
-        System.Threading.Tasks.Task InitTanksAsync(WinFormsClient.RemoteService.FieldTanksTankColor tankColor);
+        System.Threading.Tasks.Task<WinFormsClient.RemoteService.Tank[]> InitTanksAsync(int tanksCount, int tankVisible);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFieldTanks/FillField", ReplyAction="http://tempuri.org/IFieldTanks/FillFieldResponse")]
-        int[] FillField();
+        int[] FillField(WinFormsClient.RemoteService.Tank[] tanks);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFieldTanks/FillField", ReplyAction="http://tempuri.org/IFieldTanks/FillFieldResponse")]
-        System.Threading.Tasks.Task<int[]> FillFieldAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFieldTanks/InitField", ReplyAction="http://tempuri.org/IFieldTanks/InitFieldResponse")]
-        void InitField(int cellCount, int tanksCount, int tankVisible);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFieldTanks/InitField", ReplyAction="http://tempuri.org/IFieldTanks/InitFieldResponse")]
-        System.Threading.Tasks.Task InitFieldAsync(int cellCount, int tanksCount, int tankVisible);
+        System.Threading.Tasks.Task<int[]> FillFieldAsync(WinFormsClient.RemoteService.Tank[] tanks);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFieldTanks/ApplyStrategy", ReplyAction="http://tempuri.org/IFieldTanks/ApplyStrategyResponse")]
-        void ApplyStrategy(WinFormsClient.RemoteService.FieldTanksTankColor tankColor, bool attack);
+        WinFormsClient.RemoteService.Tank[] ApplyStrategy(WinFormsClient.RemoteService.Tank[] tanks, WinFormsClient.RemoteService.FieldTanksTankColor tankColor, bool attack);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFieldTanks/ApplyStrategy", ReplyAction="http://tempuri.org/IFieldTanks/ApplyStrategyResponse")]
-        System.Threading.Tasks.Task ApplyStrategyAsync(WinFormsClient.RemoteService.FieldTanksTankColor tankColor, bool attack);
+        System.Threading.Tasks.Task<WinFormsClient.RemoteService.Tank[]> ApplyStrategyAsync(WinFormsClient.RemoteService.Tank[] tanks, WinFormsClient.RemoteService.FieldTanksTankColor tankColor, bool attack);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -79,36 +184,28 @@ namespace WinFormsClient.RemoteService {
                 base(binding, remoteAddress) {
         }
         
-        public void InitTanks(WinFormsClient.RemoteService.FieldTanksTankColor tankColor) {
-            base.Channel.InitTanks(tankColor);
+        public WinFormsClient.RemoteService.Tank[] InitTanks(int tanksCount, int tankVisible) {
+            return base.Channel.InitTanks(tanksCount, tankVisible);
         }
         
-        public System.Threading.Tasks.Task InitTanksAsync(WinFormsClient.RemoteService.FieldTanksTankColor tankColor) {
-            return base.Channel.InitTanksAsync(tankColor);
+        public System.Threading.Tasks.Task<WinFormsClient.RemoteService.Tank[]> InitTanksAsync(int tanksCount, int tankVisible) {
+            return base.Channel.InitTanksAsync(tanksCount, tankVisible);
         }
         
-        public int[] FillField() {
-            return base.Channel.FillField();
+        public int[] FillField(WinFormsClient.RemoteService.Tank[] tanks) {
+            return base.Channel.FillField(tanks);
         }
         
-        public System.Threading.Tasks.Task<int[]> FillFieldAsync() {
-            return base.Channel.FillFieldAsync();
+        public System.Threading.Tasks.Task<int[]> FillFieldAsync(WinFormsClient.RemoteService.Tank[] tanks) {
+            return base.Channel.FillFieldAsync(tanks);
         }
         
-        public void InitField(int cellCount, int tanksCount, int tankVisible) {
-            base.Channel.InitField(cellCount, tanksCount, tankVisible);
+        public WinFormsClient.RemoteService.Tank[] ApplyStrategy(WinFormsClient.RemoteService.Tank[] tanks, WinFormsClient.RemoteService.FieldTanksTankColor tankColor, bool attack) {
+            return base.Channel.ApplyStrategy(tanks, tankColor, attack);
         }
         
-        public System.Threading.Tasks.Task InitFieldAsync(int cellCount, int tanksCount, int tankVisible) {
-            return base.Channel.InitFieldAsync(cellCount, tanksCount, tankVisible);
-        }
-        
-        public void ApplyStrategy(WinFormsClient.RemoteService.FieldTanksTankColor tankColor, bool attack) {
-            base.Channel.ApplyStrategy(tankColor, attack);
-        }
-        
-        public System.Threading.Tasks.Task ApplyStrategyAsync(WinFormsClient.RemoteService.FieldTanksTankColor tankColor, bool attack) {
-            return base.Channel.ApplyStrategyAsync(tankColor, attack);
+        public System.Threading.Tasks.Task<WinFormsClient.RemoteService.Tank[]> ApplyStrategyAsync(WinFormsClient.RemoteService.Tank[] tanks, WinFormsClient.RemoteService.FieldTanksTankColor tankColor, bool attack) {
+            return base.Channel.ApplyStrategyAsync(tanks, tankColor, attack);
         }
     }
 }

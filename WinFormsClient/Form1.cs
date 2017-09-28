@@ -23,6 +23,8 @@ namespace WinFormsClient {
         private PictureBox[] tnRed;
         private FieldTanksClient fieldTanksClient;
         private int[] field;
+
+        private dynamic tanks;
     
         public Form1() {
             InitializeComponent();
@@ -34,6 +36,7 @@ namespace WinFormsClient {
                         dgvGameField.Rows[i].Cells[j].Value = Image.FromFile(@"Pictures\white.jpg");
 
             fieldTanksClient = new FieldTanksClient();
+            
        
         }
 
@@ -45,12 +48,10 @@ namespace WinFormsClient {
            // InitField();
             //инициализация расчетного поля
 
-            fieldTanksClient.InitField(cellCount,tanksCount,tankVisible);
-          
-
+           // fieldTanksClient.InitField(cellCount,tanksCount,tankVisible);
+           
             //инициализация танков на поле         
-            fieldTanksClient.InitTanks(FieldTanksTankColor.Blue);
-            fieldTanksClient.InitTanks(FieldTanksTankColor.Red);
+            tanks = fieldTanksClient.InitTanks( tanksCount, tankVisible);
 
             UpdateField();
         }
@@ -100,7 +101,7 @@ namespace WinFormsClient {
 
         //обновление отрисовки поля
         private void UpdateField() {
-            field = fieldTanksClient.FillField();
+           field = fieldTanksClient.FillField(tanks);
 
             for (int i = 0; i < cellCount; i++)
                 for (int j = 0; j < cellCount; j++) {
@@ -120,16 +121,16 @@ namespace WinFormsClient {
         }
 
         private void btnStrokeCount_Click(object sender, EventArgs e) {
-           if (rbP1Defense.Checked)
-               fieldTanksClient.ApplyStrategy(FieldTanksTankColor.Blue,attack:false);
+            if (rbP1Defense.Checked)
+                tanks= fieldTanksClient.ApplyStrategy(tanks, FieldTanksTankColor.Blue, attack: false);
             else {
-                fieldTanksClient.ApplyStrategy(FieldTanksTankColor.Blue, attack: true);
+                tanks = fieldTanksClient.ApplyStrategy(tanks, FieldTanksTankColor.Blue, attack: true);
             }
-           
+            UpdateField();
             if (rbP2Defense.Checked)
-                fieldTanksClient.ApplyStrategy(FieldTanksTankColor.Red, attack:false);
+                tanks = fieldTanksClient.ApplyStrategy(tanks, FieldTanksTankColor.Red, attack: false);
             else {
-                fieldTanksClient.ApplyStrategy(FieldTanksTankColor.Red, attack: true);
+                tanks = fieldTanksClient.ApplyStrategy(tanks, FieldTanksTankColor.Red, attack: true);
             }          
             UpdateField();
           

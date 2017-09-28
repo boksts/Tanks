@@ -5,52 +5,46 @@
   <xs:element name="InitTanks">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/WcfServer" minOccurs="0" name="tankColor" type="q1:FieldTanks.TankColor" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="InitTanksResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="FillField">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="FillFieldResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="FillFieldResult" nillable="true" type="q2:ArrayOfint" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="InitField">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="cellCount" type="xs:int" />
         <xs:element minOccurs="0" name="tanksCount" type="xs:int" />
         <xs:element minOccurs="0" name="tankVisible" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="InitFieldResponse">
+  <xs:element name="InitTanksResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/WcfServer" minOccurs="0" name="InitTanksResult" nillable="true" type="q1:ArrayOfTank" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FillField">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/WcfServer" minOccurs="0" name="tanks" nillable="true" type="q2:ArrayOfTank" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FillFieldResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="FillFieldResult" nillable="true" type="q3:ArrayOfint" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ApplyStrategy">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/WcfServer" minOccurs="0" name="tankColor" type="q3:FieldTanks.TankColor" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/WcfServer" minOccurs="0" name="tanks" nillable="true" type="q4:ArrayOfTank" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/WcfServer" minOccurs="0" name="tankColor" type="q5:FieldTanks.TankColor" />
         <xs:element minOccurs="0" name="attack" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ApplyStrategyResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/WcfServer" minOccurs="0" name="ApplyStrategyResult" nillable="true" type="q6:ArrayOfTank" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
 </xs:schema>
