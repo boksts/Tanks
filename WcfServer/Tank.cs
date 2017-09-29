@@ -13,7 +13,7 @@ namespace WcfServer {
         //видиомть танка
         public static int TankVisible { get; set; }
         //число клеток
-        public static int CountCell { get; set; }
+        public static int CellCount { get; set; }
         //перемещение танка
         public enum Movement {
             Up = 0, Right, Down, Left
@@ -83,9 +83,9 @@ namespace WcfServer {
             do {
                 vis++;
                 int x1 = (X - vis) >= 0 ? X - vis : 0;
-                int xN = (X + vis) < CountCell ? X + vis : CountCell - 1;
+                int xN = (X + vis) < CellCount ? X + vis : CellCount - 1;
                 int y1 = (Y - vis) >= 0 ? Y - vis : 0;
-                int yN = (Y + vis) < CountCell ? Y + vis : CountCell - 1;
+                int yN = (Y + vis) < CellCount ? Y + vis : CellCount - 1;
                 x = y = -1;
 
                 //оборона
@@ -149,7 +149,7 @@ namespace WcfServer {
                 Move(Movement.Down, field);
                 return;
             }
-            if (X + TankVisible > CountCell) {
+            if (X + TankVisible > CellCount) {
                 Move(Movement.Up, field);
                 return;
             }
@@ -157,13 +157,13 @@ namespace WcfServer {
                 Move(Movement.Right, field);
                 return;
             }
-            if (Y + TankVisible > CountCell) {
+            if (Y + TankVisible > CellCount) {
                 Move(Movement.Left, field);
                 return;
             }
 
             if (Color == -1) Move(Movement.Up, field);
-            else Move(Movement.Down, field);
+            else Move(Movement.Down, field); 
         }
     
     }

@@ -42,6 +42,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.nudTanksCount = new System.Windows.Forms.NumericUpDown();
             this.lblStrokeCount = new System.Windows.Forms.Label();
+            this.btnGameJournal = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGameField)).BeginInit();
@@ -101,6 +102,7 @@
             this.tbPlayer2Name.Name = "tbPlayer2Name";
             this.tbPlayer2Name.Size = new System.Drawing.Size(153, 22);
             this.tbPlayer2Name.TabIndex = 5;
+            this.tbPlayer2Name.Text = "Петя";
             // 
             // groupBox1
             // 
@@ -153,6 +155,7 @@
             this.tbPlayer1Name.Name = "tbPlayer1Name";
             this.tbPlayer1Name.Size = new System.Drawing.Size(153, 22);
             this.tbPlayer1Name.TabIndex = 5;
+            this.tbPlayer1Name.Text = "Вася";
             // 
             // btnStrokeCount
             // 
@@ -269,17 +272,31 @@
             this.lblStrokeCount.TabIndex = 15;
             this.lblStrokeCount.Text = "Всего сделано ходов";
             // 
+            // btnGameJournal
+            // 
+            this.btnGameJournal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGameJournal.Enabled = false;
+            this.btnGameJournal.Location = new System.Drawing.Point(520, 454);
+            this.btnGameJournal.Name = "btnGameJournal";
+            this.btnGameJournal.Size = new System.Drawing.Size(156, 42);
+            this.btnGameJournal.TabIndex = 16;
+            this.btnGameJournal.Text = "Открыть журнал игры";
+            this.btnGameJournal.UseVisualStyleBackColor = true;
+            this.btnGameJournal.Click += new System.EventHandler(this.btnbtnGameJournal_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(711, 470);
+            this.ClientSize = new System.Drawing.Size(711, 521);
+            this.Controls.Add(this.btnGameJournal);
             this.Controls.Add(this.lblStrokeCount);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.dgvGameField);
             this.Controls.Add(this.btnStrokeCount);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
             this.Text = "Танковый бой";
             this.groupBox2.ResumeLayout(false);
@@ -317,6 +334,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblStrokeCount;
         private System.Windows.Forms.Button btnGameStart;
+        private System.Windows.Forms.Button btnGameJournal;
     }
 }
 

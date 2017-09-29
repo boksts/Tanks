@@ -67,6 +67,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameJournal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameJournal.Designer.cs">
+      <DependentUpon>GameJournal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Service References\RemoteService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -76,6 +82,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameJournal.resx">
+      <DependentUpon>GameJournal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -109,6 +118,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\RemoteService\WinFormsClient.RemoteService.Tank.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\RemoteService\WinFormsClient.RemoteService.TankDetail.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
   </ItemGroup>

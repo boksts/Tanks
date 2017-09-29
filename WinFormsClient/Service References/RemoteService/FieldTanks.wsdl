@@ -8,6 +8,12 @@
       <xsd:import schemaLocation="http://localhost:29558/FieldTanks.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IFieldTanks_SelectTankDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:SelectTankDetails" />
+  </wsdl:message>
+  <wsdl:message name="IFieldTanks_SelectTankDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SelectTankDetailsResponse" />
+  </wsdl:message>
   <wsdl:message name="IFieldTanks_InitTanks_InputMessage">
     <wsdl:part name="parameters" element="tns:InitTanks" />
   </wsdl:message>
@@ -27,6 +33,10 @@
     <wsdl:part name="parameters" element="tns:ApplyStrategyResponse" />
   </wsdl:message>
   <wsdl:portType name="IFieldTanks">
+    <wsdl:operation name="SelectTankDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFieldTanks/SelectTankDetails" message="tns:IFieldTanks_SelectTankDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFieldTanks/SelectTankDetailsResponse" message="tns:IFieldTanks_SelectTankDetails_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="InitTanks">
       <wsdl:input wsaw:Action="http://tempuri.org/IFieldTanks/InitTanks" message="tns:IFieldTanks_InitTanks_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IFieldTanks/InitTanksResponse" message="tns:IFieldTanks_InitTanks_OutputMessage" />
@@ -42,6 +52,15 @@
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IFieldTanks" type="tns:IFieldTanks">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SelectTankDetails">
+      <soap:operation soapAction="http://tempuri.org/IFieldTanks/SelectTankDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="InitTanks">
       <soap:operation soapAction="http://tempuri.org/IFieldTanks/InitTanks" style="document" />
       <wsdl:input>
